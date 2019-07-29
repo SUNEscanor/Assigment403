@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/side_nav_bar"
+    tools:showIn="navigation_view"
+
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_lastest"
+            android:icon="@drawable/icons8_home_24"
+            android:title="Latest" />
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/icons8_opened_folder_64"
+            android:title="Category" />
+        <item
+            android:id="@+id/nav_gifs"
+            android:icon="@drawable/icons8_gif_50"
+            android:title="Gifs" />
+        <item
+            android:id="@+id/nav_my_favorites"
+            android:icon="@drawable/icons8_love_24"
+            android:title="My Favorites" />
+        <item
+            android:id="@+id/nav_rate_app"
+            android:icon="@drawable/icons8_medical_mobile_app_30"
+            android:title="Rate App" />
+        <item
+            android:id="@+id/nav_more_app"
+            android:icon="@drawable/icons8_information_64"
+            android:title="More App" />
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/icons8_information_100"
+            android:title="About us" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/icons8_gear_50"
+            android:title="Setting" />
+        <item
+            android:id="@+id/nav_private"
+            android:icon="@drawable/icons8_private_24"
+            android:title="Private Police" />
+    </group>
+
+
+
+</menu>
