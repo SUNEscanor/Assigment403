@@ -1,5 +1,6 @@
 package com.yuuq.assigment403;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,23 +14,33 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.yuuq.assigment403.fragment.AboutUsFragment;
+import com.yuuq.assigment403.fragment.LastestFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+        final Fragment fragmentaboutus = new AboutUsFragment();
+    final Fragment fragmentlastest = new LastestFragment();
+        final FragmentManager fm = getSupportFragmentManager();
+        Fragment active = fragmentlastest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        fm.beginTransaction().add(R.id.mainactivity,fragmentaboutus,"1").hide(fragmentaboutus).commit();
+        fm.beginTransaction().add(R.id.mainactivity,fragmentlastest,"2").commit();
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +97,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_lastest) {
-            // Handle the camera action
+            fm.beginTransaction().hide(active).show(fragmentlastest).commit();
+            active=fragmentlastest;
+
+            return true;
         } else if (id == R.id.nav_category) {
 
         } else if (id == R.id.nav_gifs) {
@@ -99,7 +113,9 @@ public class MainActivity extends AppCompatActivity
 
         }
         else if (id == R.id.nav_about_us) {
-
+            fm.beginTransaction().hide(active).show(fragmentaboutus).commit();
+            active=fragmentaboutus;
+            return true;
         }
         else if (id == R.id.nav_setting) {
 
@@ -111,5 +127,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void Fragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainactivity,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
